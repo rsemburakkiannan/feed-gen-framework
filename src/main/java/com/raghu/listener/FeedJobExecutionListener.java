@@ -5,7 +5,7 @@ import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class HelloWorldJobExecutionListener implements JobExecutionListener {
+public class FeedJobExecutionListener implements JobExecutionListener {
 
 	@Override
 	public void beforeJob(final JobExecution jobExecution) {

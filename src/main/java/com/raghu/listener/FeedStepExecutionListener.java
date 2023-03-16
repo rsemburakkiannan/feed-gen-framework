@@ -6,7 +6,7 @@ import org.springframework.batch.core.StepExecutionListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class HelloWorldStepExecutionListener implements StepExecutionListener {
+public class FeedStepExecutionListener implements StepExecutionListener {
 
 	@Override
 	public void beforeStep(final StepExecution stepExecution) {

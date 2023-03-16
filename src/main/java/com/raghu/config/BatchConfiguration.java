@@ -1,6 +1,6 @@
 package com.raghu.config;
 
-import com.raghu.listener.HelloWorldStepExecutionListener;
+import com.raghu.listener.FeedStepExecutionListener;
 import com.raghu.processor.InMemoryItemProcessor;
 import com.raghu.reader.InMemoryReader;
 import org.springframework.batch.core.Job;
@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.raghu.listener.HelloWorldJobExecutionListener;
+import com.raghu.listener.FeedJobExecutionListener;
 import com.raghu.writer.ConsoleItemWriter;
 
 @EnableBatchProcessing
@@ -31,20 +31,20 @@ public class BatchConfiguration {
 	private StepBuilderFactory steps;
 
 	@Autowired
-	private HelloWorldJobExecutionListener jobListener;
+	private FeedJobExecutionListener jobListener;
 
 	@Autowired
-	private HelloWorldStepExecutionListener stepListener;
+	private FeedStepExecutionListener stepListener;
 
 	@Autowired
 	private InMemoryItemProcessor processor;
 
 	@Bean
 	public Step step1() {
-		return steps.get("step-1").listener(stepListener).tasklet(helloworldTasklet()).build();
+		return steps.get("step-1").listener(stepListener).tasklet(FeedTasklet()).build();
 	}
 
-	private Tasklet helloworldTasklet() {
+	private Tasklet FeedTasklet() {
 		return new Tasklet() {
 
 			@Override
@@ -68,7 +68,7 @@ public class BatchConfiguration {
 	}
 
 	@Bean
-	public Job helloWorldJob() {
+	public Job FeedJob() {
 		return jobs.get("helloWorld").listener(jobListener).start(step1()).next(step2()).build();
 	}
 
